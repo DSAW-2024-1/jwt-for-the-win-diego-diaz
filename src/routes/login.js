@@ -7,20 +7,29 @@ const getUser = async () => {
   return { email: "admin@admin.com", password: "admin" };
 };
 
+router.get("/", async (req, res) => {
+  const token = req.cookies.token;
+  if (token) {
+    jwt.verify(token, process.env.MY_SECRET, (err, decoded) => {
+      if (err) {
+        res.sendFile(path.join(__dirname, "../../public/index.html"));
+      } else {
+        res.json({ JWT_token: token, msg: "Logged in successfully" });
+      }
+    });
+  } else {
+    res.sendFile(path.join(__dirname, "../../public/index.html"));
+  }
+});
+
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
 
   const user = await getUser();
 
-  if (user.email !== email) {
+  if (user.email !== email || user.password !== password) {
     return res.status(403).json({
-      error: "Correo incorrecto",
-    });
-  }
-
-  if (user.password !== password) {
-    return res.status(403).json({
-      error: "Contraseña incorrecta",
+      error: "Correo o contraseña incorrectos",
     });
   }
 
