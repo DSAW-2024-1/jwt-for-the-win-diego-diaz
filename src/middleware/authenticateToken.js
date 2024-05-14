@@ -8,6 +8,6 @@ exports.cookieJwtAuth = (req, res, next) => {
     next();
   } catch (err) {
     res.clearCookie("token");
-    return res.redirect("/login");
+    return res.status(401).json({ msg: "You are not logged in" });
   }
 };

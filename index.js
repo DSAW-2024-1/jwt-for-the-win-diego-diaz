@@ -21,7 +21,7 @@ app.use("/contacts", contactsRouter);
 
 // URL - Callback
 app.get("/", cookieJwtAuth, (req, res) => {
-  res.send("Diego Norberto Diaz Algarin - 0000307595");
+  res.send("Working from Root");
 });
 
 app.listen(3000, () => {
