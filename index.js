@@ -21,7 +21,7 @@ app.use("/contacts", contactsRouter);
 
 // URL - Callback
 app.get("/", cookieJwtAuth, (req, res) => {
-  res.redirect("/login");
+  res.send("Working from Root");
 });
 
 app.listen(3000, () => {
