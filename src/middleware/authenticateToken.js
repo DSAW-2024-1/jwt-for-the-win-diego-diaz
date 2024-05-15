@@ -17,6 +17,6 @@ exports.cookieJwtAuth = (req, res, next) => {
   } catch (err) {
     return res
       .status(401)
-      .json({ msg: "You need a token to access this endpoint" });
+      .json({ msg: "The token is not valid or has expired already" });
   }
 };
