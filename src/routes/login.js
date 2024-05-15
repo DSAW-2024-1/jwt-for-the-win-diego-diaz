@@ -3,10 +3,6 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { cookieJwtAuth } = require("../middleware/authenticateToken");
 
-router.get("/", cookieJwtAuth, (req, res) => {
-  res.send("Working from Login");
-});
-
 const getUser = async () => {
   return { email: "admin@admin.com", password: "admin" };
 };
@@ -26,7 +22,7 @@ router.post("/", async (req, res) => {
 
   const token = jwt.sign(user, process.env.MY_SECRET, { expiresIn: "5m" });
 
-  res.cookie("token", token);
+  //res.cookie("token", token);
 
   return res.status(200).json({ msg: "Logged in successfully", token });
 });
