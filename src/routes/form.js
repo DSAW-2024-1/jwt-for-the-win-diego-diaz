@@ -9,7 +9,9 @@ router.get("/", cookieJwtAuth, (req, res) => {
 router.post("/", cookieJwtAuth, (req, res) => {
   const { text } = req.body;
   if (!text) {
-    return res.status(400).send({ error: "text is required" });
+    return res
+      .status(400)
+      .send({ error: "The property text is required in the body" });
   }
   res.send({ text });
 });

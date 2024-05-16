@@ -21,7 +21,7 @@ app.use("/contacts", contactsRouter);
 
 // URL - Callback
 app.get("/", cookieJwtAuth, (req, res) => {
-  res.send("Working from Root");
+  res.send("Taller JWT - Diego Diaz");
 });
 
 app.listen(3000, () => {
